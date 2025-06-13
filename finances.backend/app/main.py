@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.controllers.root_controller import router as root_router
+from controllers.root_controller import router as root_router
+from controllers.nubank_controller import router as nubank_router
 
 app = FastAPI(
     title="Finances AI API",
@@ -19,7 +20,8 @@ app.add_middleware(
 
 # Include routers
 app.include_router(root_router)
+app.include_router(nubank_router)
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
